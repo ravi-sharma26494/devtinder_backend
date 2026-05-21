@@ -1,0 +1,28 @@
+{
+  "name": "devtinder_backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ravi-sharma26494/devtinder_backend.git"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "express"
+  ],
+  "author": "Ravi Sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ravi-sharma26494/devtinder_backend/issues"
+  },
+  "homepage": "https://github.com/ravi-sharma26494/devtinder_backend#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}
