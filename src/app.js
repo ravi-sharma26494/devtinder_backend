@@ -11,19 +11,39 @@ app.post("/test", async (req, res) => {
   res.send("Hello World");
   return;
 });
-app.post("/signup", async (req, res) => {
-  const userData = req.body;
-  console.log(userData);
-  res
-    .status(200)
-    .json({ message: "User data received successfully", data: userData });
-  // creating a new instance of the User model with the provided user data
-  // const user = new User(userData);
-  // await user.save();
 
-  // res
-  //   .status(200)
-  //   .json({ message: "User data received successfully", data: userData });
+app.post("/signup", async (req, res) => {
+  // creating a new instance of the User Model
+  const user = new User(req.body);
+  try {
+    await user.save();
+    res.status(201).json({ message: "User created successfully" });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// GET user by email
+app.get("/user/:email", async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.params.email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// GET ALL THE USERS BY EMAIL
+app.get("/users", async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 connectDB()
