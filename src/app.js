@@ -3,19 +3,27 @@ require("dotenv").config();
 const connectDB = require("./config/database");
 const PORT = process.env.PORT || 3000;
 const app = express();
+app.use(express.json());
 
 const User = require("./models/user");
 
+app.post("/test", async (req, res) => {
+  res.send("Hello World");
+  return;
+});
 app.post("/signup", async (req, res) => {
   const userData = req.body;
   console.log(userData);
-  // creating a new instance of the User model with the provided user data
-  const user = new User(userData);
-  await user.save();
-
   res
     .status(200)
     .json({ message: "User data received successfully", data: userData });
+  // creating a new instance of the User model with the provided user data
+  // const user = new User(userData);
+  // await user.save();
+
+  // res
+  //   .status(200)
+  //   .json({ message: "User data received successfully", data: userData });
 });
 
 connectDB()
